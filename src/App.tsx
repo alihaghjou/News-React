@@ -1,10 +1,42 @@
+import axios from "axios";
+import useSWR from "swr";
+
+type articleType = {
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
+};
+
+const fetcher = (url: string) =>
+  axios.get(url).then((res) => res.data.articles);
+
 function App() {
+  const { data, error, isLoading } = useSWR<articleType[]>(
+    `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${
+      import.meta.env.VITE_api_key
+    }`,
+    fetcher
+  );
+  console.log();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
 
   return (
     <>
-      Hello
+      {data?.map((article, i) => (
+        <article key={i}>{article.title}</article>
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
