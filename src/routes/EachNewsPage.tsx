@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useNews } from "./App";
+import { useNews } from "../utils/getData";
 
-export default function EachData() {
+export default function EachNewsPage() {
   const { data, isLoading, error } = useNews();
   const { id } = useParams();
   
