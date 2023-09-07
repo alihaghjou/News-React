@@ -1,7 +1,10 @@
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
 import useSWR from "swr";
+import MainPageDisplay from "./MainPageDisplay";
+import Layout from "./Layout";
 
-type articleType = {
+export type articleType = {
   source: {
     id: string;
     name: string;
@@ -25,17 +28,17 @@ function App() {
     }`,
     fetcher
   );
-  console.log();
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  if (error || !data) return <div>{error.message}</div>;
 
   return (
-    <>
-      {data?.map((article, i) => (
-        <article key={i}>{article.title}</article>
-      ))}
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MainPageDisplay data={data} />} />
+        <Route path="/about" element={<div>About</div>} />
+      </Route>
+    </Routes>
   );
 }
 
