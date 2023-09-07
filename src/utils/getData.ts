@@ -1,10 +1,10 @@
 import axios from "axios";
 import useSWR from "swr";
-import { articleType } from "../App";
+import { articleType } from "../types";
 
 export function useNews() {
     return useSWR<articleType[]>(
-      `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${
+      `https://newsapi.org/v2/everything?q=apple&apiKey=${
         import.meta.env.VITE_api_key
       }`,
       fetcher
