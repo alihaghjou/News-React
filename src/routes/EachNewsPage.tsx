@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useNews } from "../utils/getData";
 
-export default function EachNewsPage() {
-  const { data, isLoading, error } = useNews();
+export default function EachNewsPage({filter}: {filter: string}) {
+  const { data, isLoading, error } = useNews(filter);
   const { id } = useParams();
   
   if (isLoading) return <div>Loading...</div>;

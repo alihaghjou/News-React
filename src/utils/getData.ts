@@ -14,14 +14,17 @@ function getDates() {
   return { today, yesterday };
 }
 
-export function useNews() {
+export function useNews(filter = "apple") {
   const { today, yesterday } = getDates();
-  return useSWR<articleType[]>(
-    `https://newsapi.org/v2/everything?q=bitcoin&from=${yesterday}&to=${today}&sortBy=popularity&apiKey=${
+  const {data, isLoading, error}=useSWR<articleType[]>(
+    `https://newsapi.org/v2/everything?q=${filter}&from=${yesterday}&to=${today}&sortBy=popularity&apiKey=${
       import.meta.env.VITE_api_key
     }`,
     fetcher
   );
+  const filteredData = data?.filter((item) => item.title !== "[Removed]")
+  return {data: filteredData, isLoading, error}
+  
 }
 
 const fetcher = (url: string) =>
