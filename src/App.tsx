@@ -3,6 +3,8 @@ import Layout from "./Components/Layout";
 import EachNewsPage from "./routes/EachNewsPage";
 import MainPage from "./routes/MainPage";
 
+
+
 function App() {
   return (
     <Routes>
