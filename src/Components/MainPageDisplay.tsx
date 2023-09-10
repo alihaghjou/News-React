@@ -18,7 +18,7 @@ export default function MainPageDisplay({ data, setFilter }: propsType) {
             <article key={i}>
               <Link
                 to={`/${i}`}
-                className="transition-all line-clamp-2 text-white duration-200 hover:text-slate-700"
+                className="transition-all line-clamp-2 text-white duration-300 hover:text-slate-700"
               >
                 {article.title}
               </Link>
@@ -32,7 +32,7 @@ export default function MainPageDisplay({ data, setFilter }: propsType) {
               <li key={name}>
                 <button
                   onClick={() => setFilter(name)}
-                  className="capitalize hover:text-orange-300"
+                  className="capitalize hover:text-orange-300 transition-all duration-300"
                 >
                   {name}
                 </button>
