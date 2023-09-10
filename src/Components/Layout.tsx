@@ -24,7 +24,7 @@ export default function Layout() {
             <Linkedin />
           </FooterLink>
         </section>
-        <h2 className="text-center mt-3">Copyright 2022</h2>
+        <h2 className="text-center mt-3">Copyright 2023</h2>
       </footer>
     </main>
   );
