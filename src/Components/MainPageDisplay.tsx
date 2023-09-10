@@ -4,14 +4,15 @@ import { articleType } from "../types";
 type propsType = {
   data: articleType[];
   setFilter: React.Dispatch<React.SetStateAction<string>>;
+  filter: string
 };
 
 const filterBased = ["bitcoin", "apple", "playstation", "car", "xbox"];
 
-export default function MainPageDisplay({ data, setFilter }: propsType) {
+export default function MainPageDisplay({ data, setFilter, filter }: propsType) {
   return (
     <main>
-      <h1 className="text-lg font-semibold text-center py-2">First 100 News</h1>
+      <h1 className="text-lg font-semibold text-center py-2">Latest News Of <span className="font-bold text-xl uppercase text-teal-200">{filter}</span></h1>
       <section className="flex p-3 flex-col-reverse lg:flex-row">
         <article className="flex flex-col gap-4 p-2 text-lg w-4/5 ">
           {data?.map((article, i) => (

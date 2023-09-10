@@ -1,5 +1,6 @@
 import { useNews } from "../utils/getData";
 import MainPageDisplay from "../Components/MainPageDisplay";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 type propsType = {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
@@ -9,7 +10,7 @@ type propsType = {
 export default function MainPage({ filter, setFilter }: propsType) {
   const { data, error, isLoading } = useNews(filter);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (error || !data) return <div>{error.message}</div>;
-  return <MainPageDisplay data={data} setFilter={setFilter} />;
+  return <MainPageDisplay data={data} setFilter={setFilter} filter={filter} />;
 }
